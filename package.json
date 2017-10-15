@@ -1,0 +1,25 @@
+{
+  "name": "cap07",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "bingcheng",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "grunt": "^1.0.1",
+    "grunt-cafe-mocha": "^0.1.13",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-exec": "^3.0.0",
+    "mocha": "^4.0.1",
+    "zombie": "^5.0.7"
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "express": "^4.16.1",
+    "express3-handlebars": "^0.5.2"
+  }
+}
