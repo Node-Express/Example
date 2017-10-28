@@ -44,6 +44,10 @@ app.get('/thank-you', function(req, res){
 	res.render('thank-you');
 });
 
+app.get('/', function(req, res){
+	// 我们会在后面学到CSRF……目前，只提供一个虚拟值
+	res.render('newsletter', { csrf: 'CSRF token goes here' });
+});
 app.get('/newsletter', function(req, res){
 	// 我们会在后面学到CSRF……目前，只提供一个虚拟值
 	res.render('newsletter', { csrf: 'CSRF token goes here' });
