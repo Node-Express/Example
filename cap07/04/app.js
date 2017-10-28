@@ -5,7 +5,22 @@ let weather = require('./lib/weather.js');
 
 let app = express();
 
-let handlebars = require('express3-handlebars').create({defaultLayout: 'main'});
+let handlebars = require('express3-handlebars').create({
+	defaultLayout: 'main',
+	helpers: {
+		section: function(name,options){
+			try{
+				if(!this._sections) this._sections = {};
+				this._sections[name] = options.fn(this);
+				return null;
+			}
+			catch(ex){
+				console.log(ex);
+			}
+			
+		}
+	}
+});
 
 app.engine('handlebars',handlebars.engine);
 app.set('view engine','handlebars');
@@ -35,6 +50,21 @@ app.get('/about',function(req,res){
 	res.render('about',{
 		fortune: fortune.getFortune(),
 		pageTestScript: '/qa/tests-about.js'
+	});
+});
+app.get('/jqtest',function(req,res){
+	res.render('jqtest',{});
+});
+app.get('/nursery-rhyme',function(req,res){
+	res.render('nursery-rhyme',{});
+});
+
+app.get('/data/nursery-rhyme', function(req, res){
+	res.json({
+		animal: 'squirrel',
+		bodyPart: 'tail',
+		adjective: 'bushy',
+		noun: 'heck',
 	});
 });
 
