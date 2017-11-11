@@ -2,6 +2,8 @@
 
 let cookie = require('cookie-parser');
 
+let formidable = require('formidable');
+
 let app = express();
 
 let handlebars = require('express3-handlebars').create({
@@ -53,6 +55,25 @@ app.get('/', function(req, res){
 app.get('/newsletter', function(req, res){
 	// 我们会在后面学到CSRF……目前，只提供一个虚拟值
 	res.render('newsletter', { csrf: 'CSRF token goes here' });
+});
+
+app.get('/contest/vacation-photo',function(req,res){
+	var now = new Date();
+		res.render('contest/vacation-photo',{
+		year: now.getFullYear(),month: now.getMonth()
+	});
+});
+
+app.post('/contest/vacation-photo/:year/:month', function(req, res){
+	var form = new formidable.IncomingForm();
+	form.parse(req, function(err, fields, files){
+		if(err) return res.redirect(303, '/error');
+		console.log('received fields:');
+		console.log(fields);
+		console.log('received files:');
+		console.log(files);
+		res.redirect(303, '/thank-you');
+	});
 });
 
 app.post('/process', function(req, res){
